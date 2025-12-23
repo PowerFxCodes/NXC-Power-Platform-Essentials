@@ -505,19 +505,34 @@ scrTasks As screen:
         IconStyle: ='ButtonCanvas.IconStyle'.Outline
         OnSelect: |
             =With(
-             {
-             vAssignedTo: Concat(cmbUsers.SelectedItems, ThisRecord.Mail, "; "),
-            vKeyStakeholder: User().Email,
-            vItemId: galAllTasks.Selected.ID
-             },
-            Set(varResponse, Assignuserstotasks.Run(vKeyStakeholder, vAssignedTo, vItemId).status)
-             );
-            
-            Reset(cmbUsers)
-             ;
-             ClearCollect(colAllTasks,'Work tracker') //Sync collection after updating SharePoint
-             ;
-             Notify(varResponse, NotificationType.Success)
+    {
+        _Assignee: Concat(
+            cmbUsers.SelectedItems,
+            ThisRecord.Mail,
+            "; "
+        ),
+        _KeyStakeholder: User().Email,
+        _ItemId: galAllTasks.Selected.ID
+    },
+    Set(
+        varResponse,
+        Assignuserstotasks.Run(
+            _KeyStakeholder,
+            _Assignee,
+            _ItemId
+        ).status
+    )
+);
+Reset(cmbUsers);
+ClearCollect(
+    colAllTasks,
+    'Work tracker'
+);
+//Sync collection after updating SharePoint
+Notify(
+    varResponse,
+    NotificationType.Success
+)
         Text: ="Assign users to task"
         Width: =132
         X: =1133
@@ -1107,5 +1122,6 @@ scrTasks As screen:
             X: =204
             Y: =63
             ZIndex: =3
+
 
 

@@ -8,7 +8,7 @@ scrTasks As screen:
             ClearCollect(colAllTasks, 'Work tracker') // Reloads data if empty - err handling
         );
         Set(
-            vAvgCompletedTaskDuration,
+            varAvgCompletedTaskDuration,
             Round(
                 Average(
                     Filter(colAllTasks, Progress.Value = "Completed"),
@@ -205,7 +205,7 @@ scrTasks As screen:
                     ThisItem
                 )
             OnSelect: =Select(Parent)
-            OnUncheck: =RemoveIf(colSelectedItems, ID = ThisItem.ID)
+            OnUncheck: =Remove(colSelectedItems, ThisItem)
             Width: =30
             X: =galAllTasks.TemplateWidth-chkSelectTask.Width
             Y: =galAllTasks.TemplateHeight/2
@@ -1107,4 +1107,5 @@ scrTasks As screen:
             X: =204
             Y: =63
             ZIndex: =3
+
 

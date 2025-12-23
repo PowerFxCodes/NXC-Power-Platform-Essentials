@@ -499,7 +499,13 @@ scrTasks As screen:
         AccessibleLabel: =""
         BasePaletteColor: =
         BorderColor: =
-        DisplayMode: =If(IsBlank(cmbUsers.Selected)||galAllTasks.Selected.Progress.Value="Completed"||CountRows(colSelectedItems)>0,DisplayMode.Disabled,DisplayMode.Edit)
+        DisplayMode: =If(
+                    IsBlank(cmbUsers.Selected)||
+                    galAllTasks.Selected.Progress.Value="Completed"||
+                    CountRows(colSelectedItems)>0,
+                    DisplayMode.Disabled,
+                    DisplayMode.Edit
+                    )
         FontColor: =RGBA(255, 255, 255, 1)
         Height: =47
         IconStyle: ='ButtonCanvas.IconStyle'.Outline
@@ -1122,6 +1128,7 @@ Notify(
             X: =204
             Y: =63
             ZIndex: =3
+
 
 
 

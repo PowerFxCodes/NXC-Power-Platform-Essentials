@@ -1,1 +1,1 @@
-# NXC-Power-Platform-Essentials
+Disclaimer: © Nexacu. All rights reserved. The content in this repository, including Power Fx examples, is provided for educational purposes only. Unauthorised copying, distribution, or use of this material without prior written consent from Nexacu is prohibited.

@@ -6,22 +6,7 @@ App As appinfo:
         UnassignedTasksCount = CountIf(colAllTasks, IsEmpty('Assigned to'));
         CompletionRate = If(CountRows(colAllTasks)>0,    Round(CountIf(colAllTasks, Progress.Value = "Completed") / CountRows(colAllTasks) * 100, 2)); //err-handling
     OnStart: |-
-        =/*v1st version:
-        ---------------------------------------------------
-        Concurrent(
-            ClearCollect(
-                colAllTasks,
-                'Work tracker'
-            ),
-            ClearCollect(
-                colPriority,
-                Distinct(
-                    'Work tracker',
-                    Priority.Value
-                )
-            )
-        )
-        --------------------------------------------------*/
+        =
         Concurrent(
             ClearCollect(
                 colAllTasks,

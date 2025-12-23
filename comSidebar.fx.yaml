@@ -1,0 +1,111 @@
+comSidebar As CanvasComponent:
+    Fill: =App.Theme.Colors.Lighter50
+    Height: =App.Height
+    ScreenName: =App.ActiveScreen.Name
+    TargetScreen: =App.ActiveScreen
+    Width: =App.Width*.10
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    "'icoNavigate(scrTasks)' As icon.Home":
+        BorderColor: =App.Theme.Colors.Darker40
+        Color: =App.Theme.Colors.Darker30
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(244, 244, 244, 1)
+        Icon: =Icon.Home
+        OnSelect: =Navigate(scrTasks)
+        Tooltip: ="Tasks"
+        X: =36
+        Y: =180
+        ZIndex: =2
+
+    "'icoNavigate(scrDashboard)' As icon.Trending":
+        BorderColor: =App.Theme.Colors.Darker40
+        Color: =App.Theme.Colors.Darker30
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(244, 244, 244, 1)
+        Icon: =Icon.Trending
+        OnSelect: =Navigate(scrDashboard)
+        Tooltip: ="Dashboard"
+        X: =38
+        Y: =487
+        ZIndex: =3
+
+    "'imgUser().Image' As image":
+        BorderColor: =App.Theme.Colors.Darker40
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        Height: =75
+        Image: =User().Image
+        RadiusBottomLeft: =100
+        RadiusBottomRight: =100
+        RadiusTopLeft: =100
+        RadiusTopRight: =100
+        Width: =75
+        X: =34
+        Y: =640
+        ZIndex: =4
+
+    "'lblcomSidebar.ScreenName' As Text":
+        Align: ='TextCanvas.Align'.Center
+        BorderColor: =RGBA(39, 113, 194, 1)
+        BorderStyle: =BorderStyle.None
+        BorderThickness: =0
+        DisplayMode: =DisplayMode.Edit
+        Fill: =App.Theme.Colors.Lighter60
+        Font: =
+        FontColor: =
+        Height: =32
+        Size: =14
+        Text: =comSidebar.ScreenName
+        VerticalAlign: =VerticalAlign.Middle
+        Weight: ='TextCanvas.Weight'.Bold
+        Width: =comSidebar.Width
+        X: =comSidebar.X
+        Y: =100
+        ZIndex: =6
+
+    "'lblcomSidebar.Username' As Text":
+        Align: ='TextCanvas.Align'.Center
+        BorderColor: =
+        DisplayMode: =DisplayMode.Edit
+        Fill: =
+        Font: =
+        FontColor: =
+        Height: =32
+        Size: =14
+        Text: =User().FullName
+        Width: =comSidebar.Width
+        X: =comSidebar.X
+        Y: =729
+        ZIndex: =9
+
+    "'icoNavigate(scrImpTasks)' As icon.DetailList":
+        BorderColor: =App.Theme.Colors.Darker40
+        Color: =App.Theme.Colors.Darker30
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(244, 244, 244, 1)
+        Icon: =Icon.DetailList
+        OnSelect: =Navigate(scrImpTasks)
+        Tooltip: ="Critical tasks"
+        X: =38
+        Y: =334
+        ZIndex: =10
+
+    TextCanvas2 As Text:
+        Align: ='TextCanvas.Align'.Center
+        AutoHeight: =false
+        BorderColor: =
+        DisplayMode: =DisplayMode.Edit
+        Fill: =App.Theme.Colors.Lighter70
+        FontColor: =
+        Height: =72
+        Size: =20
+        Text: ="Task Management"
+        Weight: ='TextCanvas.Weight'.Bold
+        Width: =136
+        X: =0
+        Y: =30
+        ZIndex: =11
+

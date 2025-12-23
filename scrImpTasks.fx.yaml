@@ -1,6 +1,7 @@
 "scrImpTasks As screen.'autoLayout_SplitScreen_ver1.0'":
     Fill: =Color.White
     LoadingSpinnerColor: =App.Theme.Colors.Primary
+    OnVisible: =
 
     conScreen As groupContainer.horizontalAutoLayoutContainer:
         DropShadow: =DropShadow.Light
@@ -10,10 +11,6 @@
         LayoutGap: =16
         LayoutMode: =LayoutMode.Auto
         LayoutWrap: =true
-        PaddingBottom: =16
-        PaddingLeft: =16
-        PaddingRight: =16
-        PaddingTop: =16
         RadiusBottomLeft: =4
         RadiusBottomRight: =4
         RadiusTopLeft: =4
@@ -22,8 +19,6 @@
         ZIndex: =1
 
         comSidebar_3 As comSidebar:
-            BaseWidth: =comSidebar_3.Width*0.5
-            BaseX: =(comSidebar_3.Width)/4
             LayoutMaxHeight: =
             LayoutMaxWidth: =
             LayoutMinHeight: =640

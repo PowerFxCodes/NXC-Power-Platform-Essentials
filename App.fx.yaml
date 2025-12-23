@@ -1,0 +1,50 @@
+App As appinfo:
+    BackEnabled: =true
+    Formulas: |
+        =TasksCount = CountRows(colAllTasks);
+        CriticalTasksCount = CountIf(colAllTasks, Priority.Value = "Critical");
+        UnassignedTasksCount = CountIf(colAllTasks, IsEmpty('Assigned to'));
+        CompletionRate = If(CountRows(colAllTasks)>0,    Round(CountIf(colAllTasks, Progress.Value = "Completed") / CountRows(colAllTasks) * 100, 2)); //err-handling
+    OnStart: |-
+        =/*v1st version:
+        ---------------------------------------------------
+        Concurrent(
+            ClearCollect(
+                colAllTasks,
+                'Work tracker'
+            ),
+            ClearCollect(
+                colPriority,
+                Distinct(
+                    'Work tracker',
+                    Priority.Value
+                )
+            )
+        )
+        --------------------------------------------------*/
+        Concurrent(
+            ClearCollect(
+                colAllTasks,
+                'Work tracker'
+            ),
+            ClearCollect(
+                colPriority,
+                Distinct(
+                    'Work tracker',
+                    Priority.Value
+                )
+            ),
+            ClearCollect(colProgress,
+            Distinct('Work tracker', 
+            Progress.Value)
+            )
+        )
+    Theme: =PowerAppsTheme
+
+    Host As hostControl.DefaultHostControlVariant:
+        OnCancel: =false
+        OnEdit: =false
+        OnNew: =false
+        OnSave: =false
+        OnView: =false
+

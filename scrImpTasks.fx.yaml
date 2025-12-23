@@ -1,0 +1,581 @@
+"scrImpTasks As screen.'autoLayout_SplitScreen_ver1.0'":
+    Fill: =Color.White
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+
+    conScreen As groupContainer.horizontalAutoLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(245, 245, 245, 1)
+        Height: =Parent.Height
+        LayoutAlignItems: =LayoutAlignItems.Stretch
+        LayoutGap: =16
+        LayoutMode: =LayoutMode.Auto
+        LayoutWrap: =true
+        PaddingBottom: =16
+        PaddingLeft: =16
+        PaddingRight: =16
+        PaddingTop: =16
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =Parent.Width
+        ZIndex: =1
+
+        comSidebar_3 As comSidebar:
+            BaseWidth: =comSidebar_3.Width*0.5
+            BaseX: =(comSidebar_3.Width)/4
+            LayoutMaxHeight: =
+            LayoutMaxWidth: =
+            LayoutMinHeight: =640
+            LayoutMinWidth: =640
+
+        conTasks As groupContainer.verticalAutoLayoutContainer:
+            DropShadow: =DropShadow.Light
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            LayoutMinHeight: =16
+            LayoutMinWidth: =16
+            LayoutMode: =LayoutMode.Auto
+            LayoutOverflowX: =LayoutOverflow.Scroll
+            LayoutOverflowY: =LayoutOverflow.Scroll
+            PaddingBottom: =8
+            PaddingLeft: =8
+            PaddingRight: =8
+            PaddingTop: =8
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            X: =177
+            Y: =24
+            ZIndex: =2
+
+            conTitle As groupContainer.horizontalAutoLayoutContainer:
+                DropShadow: =DropShadow.Light
+                FillPortions: =0
+                Height: =45
+                LayoutAlignItems: =LayoutAlignItems.Center
+                LayoutMaxHeight: =0
+                LayoutMaxWidth: =0
+                LayoutMinHeight: =16
+                LayoutMinWidth: =16
+                LayoutMode: =LayoutMode.Auto
+                PaddingBottom: =8
+                PaddingLeft: =8
+                PaddingRight: =8
+                PaddingTop: =8
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                ZIndex: =1
+
+                TextCanvas8 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    AlignInContainer: =AlignInContainer.Center
+                    AutoHeight: =true
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    FillPortions: =1
+                    FontColor: =
+                    Height: =32
+                    LayoutMaxHeight: =0
+                    LayoutMaxWidth: =0
+                    LayoutMinHeight: =16
+                    LayoutMinWidth: =16
+                    Size: =25
+                    Text: ="Tasks Requiring Action"
+                    Weight: ='TextCanvas.Weight'.Bold
+                    Width: =96
+                    X: =0
+                    Y: =0
+                    ZIndex: =1
+
+                ButtonCanvas5_1 As Button:
+                    AcceptsFocus: =true
+                    AccessibleLabel: =""
+                    Align: =""
+                    Appearance: ="Primary"
+                    BasePaletteColor: =
+                    BorderColor: =
+                    BorderStyle: =""
+                    ContentLanguage: =""
+                    DisplayMode: =DisplayMode.Edit
+                    Font: =""
+                    FontColor: =
+                    FontItalic: =false
+                    FontSize: =0
+                    FontStrikethrough: =false
+                    FontUnderline: =false
+                    FontWeight: =""
+                    Height: =32
+                    Icon: =""
+                    IconRotation: =0
+                    IconStyle: ="Outline"
+                    Layout: ="Icon before"
+                    LayoutMaxHeight: =0
+                    LayoutMaxWidth: =0
+                    LayoutMinHeight: =16
+                    LayoutMinWidth: =16
+                    OnSelect: |-
+                        =
+                        With(
+                            { resp: CriticalReport.Run() },   // Call your flow once
+                            Set(varFlowTasks, resp.ids);           // Use your actual output name
+                            Set(varFlowTasksCount, resp.notification)            // Use your actual output name
+                        );
+                        
+                        ClearCollect(
+                            colReportIDs,Split(
+                           varFlowTasks,","))
+                        ;
+                        Notify(varFlowTasksCount&" tasks have been sent")
+                        ;
+                        Set(varPDFGallery,PDF(conTasks));
+                        CreatePDFfromPowerApps.Run({name: "",contentBytes:varPDFGallery})
+                    TabIndex: =0
+                    Text: ="Critical tasks"
+                    Tooltip: =""
+                    VerticalAlign: =""
+                    Visible: =true
+                    Width: =110
+                    X: =0
+                    Y: =0
+                    ZIndex: =2
+
+            conData As groupContainer.horizontalAutoLayoutContainer:
+                DropShadow: =DropShadow.Light
+                Fill: =RGBA(214, 221, 224, 1)
+                FillPortions: =0
+                Height: =40
+                LayoutAlignItems: =LayoutAlignItems.Stretch
+                LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+                LayoutMaxHeight: =0
+                LayoutMaxWidth: =0
+                LayoutMinHeight: =16
+                LayoutMinWidth: =16
+                LayoutMode: =LayoutMode.Auto
+                PaddingBottom: =8
+                PaddingLeft: =8
+                PaddingRight: =8
+                PaddingTop: =8
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                ZIndex: =2
+
+                TextCanvas4 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    FillPortions: =1
+                    FontColor: =
+                    Height: =32
+                    LayoutMaxHeight: =0
+                    LayoutMaxWidth: =0
+                    LayoutMinHeight: =16
+                    LayoutMinWidth: =16
+                    Text: ="Task name"
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =200
+                    X: =0
+                    Y: =0
+                    ZIndex: =1
+
+                TextCanvas4_1 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    AutoHeight: =false
+                    BorderColor: =
+                    BorderStyle: =""
+                    ContentLanguage: =""
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    FillPortions: =1
+                    Font: =""
+                    FontColor: =
+                    FontItalic: =false
+                    FontStrikethrough: =false
+                    FontUnderline: =false
+                    Height: =32
+                    LayoutMaxHeight: =0
+                    LayoutMaxWidth: =0
+                    LayoutMinHeight: =16
+                    LayoutMinWidth: =16
+                    Size: =14
+                    TabIndex: =0
+                    Text: ="ID"
+                    Tooltip: =""
+                    VerticalAlign: =""
+                    Visible: =true
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =200
+                    Wrap: =true
+                    X: =0
+                    Y: =0
+                    ZIndex: =2
+
+                TextCanvas4_2 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    AutoHeight: =false
+                    BorderColor: =
+                    BorderStyle: =""
+                    ContentLanguage: =""
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    FillPortions: =1
+                    Font: =""
+                    FontColor: =
+                    FontItalic: =false
+                    FontStrikethrough: =false
+                    FontUnderline: =false
+                    Height: =32
+                    LayoutMaxHeight: =0
+                    LayoutMaxWidth: =0
+                    LayoutMinHeight: =16
+                    LayoutMinWidth: =16
+                    Size: =14
+                    TabIndex: =0
+                    Text: ="Start date"
+                    Tooltip: =""
+                    VerticalAlign: =""
+                    Visible: =true
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =200
+                    Wrap: =true
+                    X: =0
+                    Y: =0
+                    ZIndex: =3
+
+                TextCanvas4_3 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    AutoHeight: =false
+                    BorderColor: =
+                    BorderStyle: =""
+                    ContentLanguage: =""
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    FillPortions: =1
+                    Font: =""
+                    FontColor: =
+                    FontItalic: =false
+                    FontStrikethrough: =false
+                    FontUnderline: =false
+                    Height: =32
+                    LayoutMaxHeight: =0
+                    LayoutMaxWidth: =0
+                    LayoutMinHeight: =16
+                    LayoutMinWidth: =16
+                    Size: =14
+                    TabIndex: =0
+                    Text: ="Due date"
+                    Tooltip: =""
+                    VerticalAlign: =""
+                    Visible: =true
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =200
+                    Wrap: =true
+                    X: =0
+                    Y: =0
+                    ZIndex: =4
+
+                TextCanvas4_4 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    AutoHeight: =false
+                    BorderColor: =
+                    BorderStyle: =""
+                    ContentLanguage: =""
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    FillPortions: =1
+                    Font: =""
+                    FontColor: =
+                    FontItalic: =false
+                    FontStrikethrough: =false
+                    FontUnderline: =false
+                    Height: =32
+                    LayoutMaxHeight: =0
+                    LayoutMaxWidth: =0
+                    LayoutMinHeight: =16
+                    LayoutMinWidth: =16
+                    Size: =14
+                    TabIndex: =0
+                    Text: ="Priority"
+                    Tooltip: =""
+                    VerticalAlign: =""
+                    Visible: =true
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =200
+                    Wrap: =true
+                    X: =0
+                    Y: =0
+                    ZIndex: =5
+
+                TextCanvas4_10 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    AutoHeight: =false
+                    BorderColor: =
+                    BorderStyle: =""
+                    ContentLanguage: =""
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    FillPortions: =1
+                    Font: =""
+                    FontColor: =
+                    FontItalic: =false
+                    FontStrikethrough: =false
+                    FontUnderline: =false
+                    Height: =32
+                    LayoutMaxHeight: =0
+                    LayoutMaxWidth: =0
+                    LayoutMinHeight: =16
+                    LayoutMinWidth: =16
+                    Size: =14
+                    TabIndex: =0
+                    Text: ="Progress"
+                    Tooltip: =""
+                    VerticalAlign: =""
+                    Visible: =true
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =200
+                    Wrap: =true
+                    X: =0
+                    Y: =0
+                    ZIndex: =6
+
+            galImpTasks As gallery.galleryVertical:
+                BorderColor: =App.Theme.Colors.Darker40
+                DelayItemLoading: =true
+                Height: =  If(varFlowTasksCount>0, Parent.Height/varFlowTasksCount,100)
+                Items: =Filter(colAllTasks, ID in (colReportIDs))
+                Layout: =Layout.Vertical
+                LayoutMaxHeight: =
+                LayoutMaxWidth: =
+                LayoutMinHeight: =287
+                LayoutMinWidth: =320
+                LoadingSpinner: =LoadingSpinner.Data
+                TemplatePadding: =0
+                TemplateSize: = If(varFlowTasksCount>0,galImpTasks.Height/varFlowTasksCount,100)
+                ZIndex: =3
+
+                conRecord As groupContainer.horizontalAutoLayoutContainer:
+                    DropShadow: =DropShadow.Light
+                    Fill: =If(ThisItem.'Due date'<Today()+1,Color.MistyRose,Color.Beige)
+                    Height: =  If(varFlowTasksCount>0, Parent.Height/varFlowTasksCount,100)
+                    LayoutAlignItems: =LayoutAlignItems.Stretch
+                    LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+                    LayoutMode: =LayoutMode.Auto
+                    PaddingBottom: =8
+                    PaddingLeft: =8
+                    PaddingRight: =8
+                    PaddingTop: =8
+                    RadiusBottomLeft: =4
+                    RadiusBottomRight: =4
+                    RadiusTopLeft: =4
+                    RadiusTopRight: =4
+                    Width: =Parent.Width
+                    X: =Parent.X
+                    ZIndex: =1
+
+                    TextCanvas4_5 As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        AlignInContainer: =AlignInContainer.Center
+                        AutoHeight: =false
+                        BorderColor: =
+                        BorderStyle: =""
+                        ContentLanguage: =""
+                        DisplayMode: =DisplayMode.Edit
+                        Fill: =
+                        FillPortions: =1
+                        Font: =""
+                        FontColor: =
+                        FontItalic: =false
+                        FontStrikethrough: =false
+                        FontUnderline: =false
+                        Height: =32
+                        LayoutMaxHeight: =0
+                        LayoutMaxWidth: =0
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        Size: =14
+                        TabIndex: =0
+                        Text: =ThisItem.Title
+                        Tooltip: =""
+                        VerticalAlign: =""
+                        Visible: =true
+                        Weight: ="Regular"
+                        Width: =200
+                        Wrap: =true
+                        X: =0
+                        Y: =0
+                        ZIndex: =1
+
+                    TextCanvas4_6 As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        AlignInContainer: =AlignInContainer.Center
+                        AutoHeight: =false
+                        BorderColor: =
+                        BorderStyle: =""
+                        ContentLanguage: =""
+                        DisplayMode: =DisplayMode.Edit
+                        Fill: =
+                        FillPortions: =1
+                        Font: =""
+                        FontColor: =
+                        FontItalic: =false
+                        FontStrikethrough: =false
+                        FontUnderline: =false
+                        Height: =32
+                        LayoutMaxHeight: =0
+                        LayoutMaxWidth: =0
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        Size: =14
+                        TabIndex: =0
+                        Text: =ThisItem.ID
+                        Tooltip: =""
+                        VerticalAlign: =""
+                        Visible: =true
+                        Weight: ="Regular"
+                        Width: =200
+                        Wrap: =true
+                        X: =0
+                        Y: =0
+                        ZIndex: =2
+
+                    TextCanvas4_7 As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        AlignInContainer: =AlignInContainer.Center
+                        AutoHeight: =false
+                        BorderColor: =
+                        BorderStyle: =""
+                        ContentLanguage: =""
+                        DisplayMode: =DisplayMode.Edit
+                        Fill: =
+                        FillPortions: =1
+                        Font: =""
+                        FontColor: =
+                        FontItalic: =false
+                        FontStrikethrough: =false
+                        FontUnderline: =false
+                        Height: =32
+                        LayoutMaxHeight: =0
+                        LayoutMaxWidth: =0
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        Size: =14
+                        TabIndex: =0
+                        Text: =Text(ThisItem.'Start date',"dd-mm-yyyy")
+                        Tooltip: =""
+                        VerticalAlign: =""
+                        Visible: =true
+                        Weight: ="Regular"
+                        Width: =200
+                        Wrap: =true
+                        X: =0
+                        Y: =0
+                        ZIndex: =3
+
+                    TextCanvas4_8 As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        AlignInContainer: =AlignInContainer.Center
+                        AutoHeight: =false
+                        BorderColor: =
+                        BorderStyle: =""
+                        ContentLanguage: =""
+                        DisplayMode: =DisplayMode.Edit
+                        Fill: =
+                        FillPortions: =1
+                        Font: =""
+                        FontColor: =
+                        FontItalic: =false
+                        FontStrikethrough: =false
+                        FontUnderline: =false
+                        Height: =32
+                        LayoutMaxHeight: =0
+                        LayoutMaxWidth: =0
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        Size: =14
+                        TabIndex: =0
+                        Text: =Text(ThisItem.'Due date',"dd-mm-yyyy")
+                        Tooltip: =""
+                        VerticalAlign: =""
+                        Visible: =true
+                        Weight: ="Regular"
+                        Width: =200
+                        Wrap: =true
+                        X: =0
+                        Y: =0
+                        ZIndex: =4
+
+                    TextCanvas4_9 As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        AlignInContainer: =AlignInContainer.Center
+                        AutoHeight: =false
+                        BorderColor: =
+                        BorderStyle: =""
+                        ContentLanguage: =""
+                        DisplayMode: =DisplayMode.Edit
+                        Fill: =
+                        FillPortions: =1
+                        Font: =""
+                        FontColor: =
+                        FontItalic: =false
+                        FontStrikethrough: =false
+                        FontUnderline: =false
+                        Height: =32
+                        LayoutMaxHeight: =0
+                        LayoutMaxWidth: =0
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        Size: =14
+                        TabIndex: =0
+                        Text: =ThisItem.Priority.Value
+                        Tooltip: =""
+                        VerticalAlign: =""
+                        Visible: =true
+                        Weight: ="Regular"
+                        Width: =200
+                        Wrap: =true
+                        X: =0
+                        Y: =0
+                        ZIndex: =5
+
+                    TextCanvas4_11 As Text:
+                        Align: ='TextCanvas.Align'.Center
+                        AlignInContainer: =AlignInContainer.Center
+                        AutoHeight: =false
+                        BorderColor: =
+                        BorderStyle: =""
+                        ContentLanguage: =""
+                        DisplayMode: =DisplayMode.Edit
+                        Fill: =
+                        FillPortions: =1
+                        Font: =""
+                        FontColor: =
+                        FontItalic: =false
+                        FontStrikethrough: =false
+                        FontUnderline: =false
+                        Height: =32
+                        LayoutMaxHeight: =0
+                        LayoutMaxWidth: =0
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        Size: =14
+                        TabIndex: =0
+                        Text: =ThisItem.Progress.Value
+                        Tooltip: =""
+                        VerticalAlign: =""
+                        Visible: =true
+                        Weight: ="Regular"
+                        Width: =200
+                        Wrap: =true
+                        X: =0
+                        Y: =0
+                        ZIndex: =6
+

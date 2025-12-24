@@ -118,9 +118,9 @@
                     OnSelect: |-
                         =
                         With(
-                            { resp: CriticalReport.Run() },   // Call your flow once
-                            Set(varFlowTasks, resp.ids);           // Use your actual output name
-                            Set(varFlowTasksCount, resp.notification)            // Use your actual output name
+                            { _resp: CriticalReport.Run() },   // Call your flow once
+                            Set(varFlowTasks, _resp.ids);           // Use your actual output name
+                            Set(varFlowTasksCount, _resp.notification)            // Use your actual output name
                         );
                         
                         ClearCollect(
@@ -573,4 +573,5 @@
                         X: =0
                         Y: =0
                         ZIndex: =6
+
 

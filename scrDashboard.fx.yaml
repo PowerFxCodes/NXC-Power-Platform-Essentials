@@ -5,6 +5,7 @@ scrDashboard As screen:
     "galPriority As gallery.'BrowseLayout_Vertical_OneTextVariant_ver5.0'":
         BorderColor: =App.Theme.Colors.Darker40
         DelayItemLoading: =true
+        DisplayMode: =If(tglApplyFilter.Checked,DisplayMode.Edit,DisplayMode.Disabled)
         Height: =333
         Items: =colPriority
         Layout: =Layout.Vertical
@@ -59,8 +60,8 @@ scrDashboard As screen:
         TileUrl: |-
             =If(
                 tglApplyFilter.Checked,
-                "https://{{Your report URL}}&filter=table/Priority eq '" & galPriority.Selected.Value & "'",
-                "https://{{Your report URL}}"
+                "https://app.powerbi.com/reportEmbed?reportId=5d18ac57-dff1-4ec8-9e16-6b8fdb918a99&autoAuth=true&ctid=9784e37d-8c4a-4466-8978-ed04a7fae500&filter=table/Priority eq '" & galPriority.Selected.Value & "'",
+                "https://app.powerbi.com/reportEmbed?reportId=5d18ac57-dff1-4ec8-9e16-6b8fdb918a99&autoAuth=true&ctid=9784e37d-8c4a-4466-8978-ed04a7fae500"
             )
         Width: =1000
         X: =comSidebar_2.Width+5
@@ -82,5 +83,4 @@ scrDashboard As screen:
         X: =1167
         Y: =389
         ZIndex: =3
-
 
